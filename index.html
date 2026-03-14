@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Recession Signal Monitor | BondStats</title>
+  <meta name="description" content="Track recession-related bond market signals including the US 10Y-2Y and 10Y-3M yield curve spreads." />
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="tool-shell">
+    <header class="hero">
+      <div class="hero-text">
+        <p class="eyebrow">BondStats Tool</p>
+        <h1>Recession Signal Monitor</h1>
+        <p class="hero-desc">
+          Track key US bond market recession signals based on yield curve spreads.
+          An inverted yield curve has historically been one of the most closely watched market-based warning signals.
+        </p>
+      </div>
+    </header>
+
+    <section class="controls-card">
+      <div class="control-group">
+        <label for="spreadSelect">Select spread</label>
+        <select id="spreadSelect">
+          <option value="10y2y">US 10Y - 2Y</option>
+          <option value="10y3m">US 10Y - 3M</option>
+        </select>
+      </div>
+
+      <div class="control-group">
+        <label for="rangeSelect">Time range</label>
+        <select id="rangeSelect">
+          <option value="1y">1 Year</option>
+          <option value="3y">3 Years</option>
+          <option value="5y" selected>5 Years</option>
+          <option value="10y">10 Years</option>
+          <option value="max">Max</option>
+        </select>
+      </div>
+    </section>
+
+    <section class="stats-grid">
+      <article class="stat-card">
+        <span class="stat-label">Current Spread</span>
+        <strong id="currentSpread" class="stat-value">--</strong>
+      </article>
+
+      <article class="stat-card">
+        <span class="stat-label">Curve Status</span>
+        <strong id="curveStatus" class="stat-value">--</strong>
+      </article>
+
+      <article class="stat-card">
+        <span class="stat-label">Days Inverted</span>
+        <strong id="daysInverted" class="stat-value">--</strong>
+      </article>
+
+      <article class="stat-card">
+        <span class="stat-label">Latest Date</span>
+        <strong id="latestDate" class="stat-value">--</strong>
+      </article>
+    </section>
+
+    <section class="chart-card">
+      <div class="chart-header">
+        <h2 id="chartTitle">US 10Y - 2Y Spread</h2>
+        <p id="chartSubtitle">Yield curve spread history</p>
+      </div>
+      <div class="chart-wrap">
+        <canvas id="spreadChart"></canvas>
+      </div>
+    </section>
+
+    <section class="info-grid">
+      <article class="info-card">
+        <h3>What this signal means</h3>
+        <p id="signalExplanation">
+          The spread between longer-term and shorter-term government bond yields helps show whether the yield curve is normal or inverted.
+        </p>
+      </article>
+
+      <article class="info-card">
+        <h3>Interpretation</h3>
+        <p id="signalInterpretation">
+          A negative spread means the curve is inverted. This has historically been monitored as a possible recession warning sign.
+        </p>
+      </article>
+    </section>
+
+    <section class="methodology-card">
+      <h2>Methodology</h2>
+      <ul>
+        <li>Spread = 10-year Treasury yield minus shorter maturity yield.</li>
+        <li>10Y-2Y uses the US 10-year yield minus the US 2-year yield.</li>
+        <li>10Y-3M uses the US 10-year yield minus the US 3-month yield.</li>
+        <li>Curve status is labeled as inverted when the spread is below 0.00 percentage points.</li>
+        <li>Days inverted counts the current consecutive period below zero.</li>
+      </ul>
+    </section>
+
+    <footer class="tool-footer">
+      <p>
+        Source: BondStats data layer. For educational and informational purposes only.
+      </p>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
